@@ -855,6 +855,21 @@ function! s:MRU_Cmd(pat)
     call s:MRU_Open_Window(a:pat)
 endfunction
 
+" MRU_Toggle                          {{{1
+" Toggle MRU
+"   pat - File name pattern passed to the MRU command
+function! s:MRU_Toggle(pat)
+    " If the MRU window is open, close it
+    let bname = '__MRU_Files__'
+    let winnum = bufwinnr(bname)
+    if winnum != -1
+        exe winnum . 'wincmd w'
+        silent! close
+    else
+        call s:MRU_Cmd(a:pat)
+    endif
+endfunction
+
 " MRU_add_files_to_menu                 {{{1
 " Adds a list of files to the "Recent Files" sub menu under the "File" menu.
 "   prefix - Prefix to use for each of the menu entries
@@ -967,6 +982,8 @@ command! -nargs=? -complete=customlist,s:MRU_Complete MRU
             \ call s:MRU_Cmd(<q-args>)
 command! -nargs=? -complete=customlist,s:MRU_Complete Mru
             \ call s:MRU_Cmd(<q-args>)
+command! -nargs=? -complete=customlist,s:MRU_Complete MRUToggle
+            \ call s:MRU_Toggle(<q-args>)
 
 " }}}
 
