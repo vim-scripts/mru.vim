@@ -530,9 +530,9 @@ function! s:MRU_Window_Edit_File(fname, multi, edit_type, open_type)
     else
         " If the selected file is already open in one of the windows,
         " jump to it
-        let winnum = bufwinnr('^' . a:fname . '$')
-        if winnum != -1
-            exe winnum . 'wincmd w'
+        let bufnum = bufnr('^' . a:fname . '$')
+        if bufnum != -1
+            exe "sb ".bufnum
         else
             if g:MRU_Auto_Close == 1 && g:MRU_Use_Current_Window == 0
                 " Jump to the window from which the MRU window was opened
