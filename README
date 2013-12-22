@@ -14,6 +14,8 @@ Vim, then you should use an older version of the MRU plugin.
 The recently used filenames are stored in a file specified by the Vim
 MRU_File variable.
 
+The github repository for this plugin is at http://github.com/yegappan/mru
+
 Usage
 
 To list and edit files from the MRU list, you can use the ":MRU" command.
@@ -163,4 +165,3 @@ The default setting for this is 10. You can change this to increase the
 number of file names displayed in a single sub-menu:
 
       let MRU_Max_Submenu_Entries = 15
-
